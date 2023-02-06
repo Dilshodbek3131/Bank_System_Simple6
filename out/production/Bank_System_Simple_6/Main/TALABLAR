@@ -1,0 +1,91 @@
+
+    Bank tizimi
+
+    Asosiy bank xizmatlarini ko'rsatadigan dastur yozing
+    Barcha sinflar BankServices to'plamida mavjud .
+    Main paketidagi MainClass klassi asosiy methodlar uchun bir nechta foydalanish misollarini taqdim etadi.
+
+    R1: Bank xizmatlari
+
+    Bank sinfining konstruktori argument sifatida bank nomini ifodalovchi qatorni qabul qiladi; getName() methodi bunday
+     nomni qaytaradi.
+    Barcha operatsiyalarning sanalari joriy yilning kuniga to'g'ri keladigan 1 dan 365 gacha bo'lgan butun son bilan ifodalanadi.
+    Bankda faollashtirilgan har bir bank hisobvarag'i Account class ining ob'ekti bilan ifodalanadi .
+    createAccount() metodi yangi bank hisobini faollashtirishga imkon beradi va uchta argumentni qabul qiladi: hisob egasining ismi,
+    faollashtirish sanasi va dastlabki depozit miqdori; method yangi yaratilgan hisob raqamiga mos keladigan butun sonni qaytaradi
+    (raqamlar 1 dan boshlanadi va har bir yangi hisob uchun 1 ga oshiriladi); hisobni faollashtirish unda amalga oshirilgan birinchi
+    operatsiyani anglatadi.
+
+     getAccount() methodi hisob raqamini qabul qiladi va Account class ining mos ob'ektini qaytaradi ;
+     agar raqam biron bir faol hisob qaydnomasiga mos kelmasa,
+     InvalidCode istisnosi throw qilinadi.
+
+    deposit() methodi hisob raqamiga omonatni amalga oshirish imkonini beradi; u
+    argument sifatida hisob raqami, omonat sanasi va summasini qabul qiladi;
+    agar raqam biron bir faol hisob qaydnomasiga mos kelmasa, InvalidCode istisnosi tashlanadi;
+     agar ko'rsatilgan sana hisobvaraq bo'yicha oxirgi operatsiyadan
+    oldin bo'lsa, depozit oxirgi operatsiya bilan bir xil sanada amalga oshiriladi.
+
+    withdraw() methodi hisobdan pul yechib olish imkonini beradi; u argument sifatida hisob raqamini,
+     yechib olingan sanani va yechib olinadigan summani qabul qiladi;
+    agar raqam biron bir faol hisob qaydnomasiga mos kelmasa, InvalidCode istisnosi chiqariladi;
+     agar berilgan summa hisobdagi qoldiqdan katta bo'lsa,
+    InvalidValue istesnosi tashlanadi; agar berilgan sana hisobdagi oxirgi operatsiyadan oldin bo‘lsa,
+     yechib olish oxirgi operatsiya bilan bir xil sanada amalga oshiriladi.
+
+    transfer() methodi xuddi shu bankning boshqa hisob raqamiga bank o'tkazmasini amalga oshirish imkonini beradi; u
+    argument sifatida jo'natuvchi hisob raqamini,
+    qabul qiluvchi hisob raqamini, sana va summani qabul qiladi; agar hisob raqamlaridan birortasi faol hisob qaydnomasiga mos kelmasa,
+    InvalidCode istisnosi chiqariladi;
+
+    agar berilgan summa manba hisobidagi balansdan katta bo'lsa, InvalidValue istisnosi tashlanadi;
+    jo'natuvchi va qabul qiluvchi hisobvaraqlar bo'yicha operatsiyalarni
+    amalga oshirish sanalari yuqorida keltirilgan mezonlar bilan belgilanadi;
+    har qanday holatda ham qabul qiluvchi hisob bo'yicha operatsiya sanasi jo'natuvchi
+    hisobidagi sanadan kattaroq yoki teng bo'lishi kerak.
+
+    deleteAccount() methodi barcha mavjud pullarni yechib olish orqali hisobni yopish imkonini beradi;
+     u argument sifatida hisob raqami va sanani qabul qiladi
+    va yopiq Account ni qaytaradi ; agar hisob raqamlaridan birortasi faol hisob qaydnomasiga mos kelmasa,
+     InvalidCode istisnosi chiqariladi; agar berilgan sana hisobdagi
+    oxirgi operatsiyadan oldin bo'lsa, yopilish oxirgi operatsiya bilan bir xil sanada amalga oshiriladi.
+
+    R2: operatsiyalar
+    abstract class Operation klassi bank hisobvarag'ida bajariladigan umumiy operatsiyani ifodalaydi.
+
+    Ikkita mumkin bo'lgan operatsiya mavjud: depozit (Deposit klassi bilan ifodalanadi) va yechib olish (Withdrawal klassi bilan ifodalanadi).
+
+    Ikkala class ham toString() methodini implement qiladi, u quyidagilardan iborat qatorni qaytaradi: operatsiya sanasi,
+    vergul (","), operatsiya miqdori, keyin + yoki - belgisi, operatsiya mos ravishda depozit yoki withdrawal bo'lsa. ,
+    oraliq bo'shliqlarsiz (Misollar: "5,500.5+", "41,158.0-" ).
+
+    Hisobni faollashtirish bilvosita depozitni amalga oshiradi, yopilishi esa withdrawal ni anglatadi.
+
+    R3: Hisoblar
+    Account sinfi toString() methodini amalga oshiradi , u quyidagilardan iborat qatorni qaytaradi: hisob raqami,
+     egasining ismi, oxirgi operatsiya sanasi
+    va joriy balans, ularning barchasi vergul (" , ") bilan ajratilgan va ularsiz oraliq blankalar (masalan, " 4,Paul,35,522.3 ").
+
+    Bundan tashqari, sinf quyidagi methodlarni taqdim etadi:
+
+    getMovements() sanalar bo'yicha tartiblangan hisobda bajarilgan barcha operatsiyalar ro'yxatini qaytaradi;
+
+    getDeposits() hisobda amalga oshirilgan barcha omonatlar ro'yxatini ko'paytirish miqdori bo'yicha tartiblangan holda qaytaradi;
+
+    getWithdrawals() ko'tarilgan miqdorlar bo'yicha tartiblangan hisobda amalga oshirilgan barcha yechib olishlar ro'yxatini qaytaradi.
+
+
+    R4: Hisobotlar
+    Bank sinfining quyidagi usullari bankda ochilgan faol hisobvaraqlar to'g'risida ma'lumot beradi (yopiq hisob hisobga olinmaydi):
+
+    getTotalDeposit() hozirda bankka qo'yilgan pulning umumiy miqdorini qaytaradi (barcha hisoblardagi qoldiqlar yig'indisi);
+
+    getAccounts() hisob raqamining o'sishi bo'yicha tartiblangan barcha faol hisoblar ro'yxatini qaytaradi;
+
+    getZeroAccounts() balansi 0 ga teng bo'lgan barcha hisoblar ro'yxatini qaytaradi;
+
+    getAccountsByBalance() summalar diapazonini qabul qiladi va qoldiqlar kamayishi bo‘yicha tartiblangan berilgan
+    diapazondagi balansga ega faol hisoblar
+     ro‘yxatini qaytaradi;
+
+    getNumberHigher() summani qabul qiladi va balansi berilgan summadan kam bo'lmagan hisoblar sonini qaytaradi.
